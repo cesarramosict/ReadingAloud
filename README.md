@@ -1,5 +1,8 @@
 # ReadingAloud
 
+<img width="1548" height="1020" alt="ReadingAloud" src="https://github.com/user-attachments/assets/00cde5e3-db62-4333-9e9e-48d7a70058fc" />
+
+
 **An app that reads content aloud** — turns texts, books, and articles into audio, for anyone who wants to listen while doing something else.
 
 > **Status:** Phase 1 — core logic in pure Java (no Android yet). Runnable and testable in IntelliJ IDEA as an ordinary Java program.
