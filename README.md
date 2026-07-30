@@ -1,36 +1,36 @@
 # ReadingAloud
 
-**Um aplicativo que lê conteúdo em voz alta** — transforma textos, livros e artigos em áudio, para quem quer ouvir enquanto faz outras coisas.
+**An app that reads content aloud** — turns texts, books, and articles into audio, for anyone who wants to listen while doing something else.
 
-> **Status:** Fase 1 — núcleo de lógica em Java puro (sem Android ainda). Executável e testável no IntelliJ IDEA como um programa Java comum.
+> **Status:** Phase 1 — core logic in pure Java (no Android yet). Runnable and testable in IntelliJ IDEA as an ordinary Java program.
 
 ---
 
-## O que é
+## What it is
 
-O ReadingAloud pega um arquivo (`.txt`, e no futuro `.epub`, `.pdf`), extrai o texto, o organiza em trechos legíveis e o "lê em voz alta" no idioma e voz escolhidos.
+ReadingAloud takes a file (`.txt`, and later `.epub`, `.pdf`), extracts the text, organizes it into readable chunks, and "reads it aloud" in the chosen language and voice.
 
-Nesta primeira fase, **"falar" significa imprimir o texto no console**, trecho a trecho. A síntese de voz real (TextToSpeech) entra na Fase 2, junto com a camada Android — sem precisar reescrever a lógica atual. Troca-se apenas o "motor de saída", não o desenho das classes.
+In this first phase, **"speaking" means printing the text to the console**, chunk by chunk. Real speech synthesis (TextToSpeech) arrives in Phase 2, together with the Android layer — with no need to rewrite the current logic. Only the "output engine" gets swapped, not the class design.
 
-## Arquitetura
+## Architecture
 
-O código se organiza em três camadas com responsabilidades separadas:
+The code is organized into three layers with separate responsibilities:
 
-| Camada | Responsabilidade |
+| Layer | Responsibility |
 | --- | --- |
-| **importer** | Cada formato de arquivo sabe extrair texto puro. Baseada numa interface. |
-| **content** | O texto normalizado e dividido em trechos legíveis (`Document` e seus tipos). |
-| **reader** | Pega um `Document` e o lê em voz alta. Conhece a voz e o idioma. |
+| **importer** | Each file format knows how to extract plain text. Built on an interface. |
+| **content** | The normalized text, split into readable chunks (`Document` and its types). |
+| **reader** | Takes a `Document` and reads it aloud. Knows the voice and the language. |
 
-Essa separação (baixo acoplamento) é o que permite adicionar um formato novo sem mexer no resto do projeto.
+This separation (low coupling) is what lets you add a new format without touching the rest of the project.
 
-## Tecnologias
+## Technologies
 
 - **Java 17+**
-- **JUnit 5** para os testes
-- Nomes de classes, campos e métodos em inglês; comentários e documentação em português.
+- **JUnit 5** for the tests
+- Class, field, and method names in English; comments and documentation in Portuguese.
 
-## Estrutura de pacotes
+## Package structure
 
 ```
 com.readingaloud
@@ -38,33 +38,35 @@ com.readingaloud.content     →  Document, Book, TextChunker
 com.readingaloud.importer    →  Importer, TxtImporter, ImporterRegistry
 com.readingaloud.reader      →  Reader, VoiceGender
 com.readingaloud.exception   →  UnsupportedFormatException
-com.readingaloud.Main        →  ponto de entrada para testar tudo junto
+com.readingaloud.Main        →  entry point for testing everything together
 ```
 
-## Como rodar
+## How to run
 
-**Pelo IntelliJ IDEA (recomendado):**
-1. Abra o projeto no IntelliJ.
-2. Abra a classe `Main`.
-3. Clique no botão ▶ ao lado do método `main`.
+**With IntelliJ IDEA (recommended):**
 
-**Pela linha de comando:**
+1. Open the project in IntelliJ.
+2. Open the `Main` class.
+3. Click the ▶ button next to the `main` method.
+
+**From the command line:**
+
 ```bash
-# a partir da raiz do projeto
+# from the project root
 javac -d out $(find src -name "*.java")
 java -cp out com.readingaloud.Main
 ```
 
 ## Roadmap
 
-- **Fase 2 — voz real:** no Android, o `Reader` passa a usar síntese de voz de verdade.
-- **Novos formatos:** EPUB, PDF e artigos da web, cada um como um novo importador que assina o contrato `Importer`.
-- **Caminho inverso (áudio → texto):** transcrever áudio de vídeos/músicas em texto, com foco em acessibilidade.
+- **Phase 2 — real voice:** on Android, the `Reader` switches to actual speech synthesis.
+- **New formats:** EPUB, PDF, and web articles, each as a new importer that fulfills the `Importer` contract.
+- **Reverse path (audio → text):** transcribe audio from videos/music into text, with a focus on accessibility.
 
-## Licença
+## License
 
-Distribuído sob a licença MIT. Veja [`LICENSE`](LICENSE) para mais detalhes.
+Distributed under the MIT license. See [`LICENSE`](LICENSE) for details.
 
-## Autor
+## Author
 
 cesarramosict
