@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">ReadingAloud</title>
+</head>
+<body>
+<h1 th:text="${title}">ReadingAloud</h1>
+<p>Paste a text below and listen to it.</p>
+
+<textarea id="text" rows="6" cols="60">Hello! ReadingAloud reads your documents aloud.</textarea>
+<br>
+<button type="button" onclick="readAloud()">Read aloud</button>
+
+<script>
+    // Uses the browser's built-in speech synthesis (Web Speech API)
+    function readAloud() {
+        const text = document.getElementById("text").value;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "en-US";
+        window.speechSynthesis.speak(utterance);
+    }
+</script>
+</body>
+</html>

@@ -1,11 +1,11 @@
-# Arquivos compilados do Java
+# Compiled Java files
 *.class
 out/
 target/
 build/
 bin/
 
-# Arquivos de log
+# Log files
 *.log
 
 # IntelliJ IDEA
@@ -14,11 +14,9 @@ bin/
 *.iws
 *.ipr
 
-# Gradle / Maven (caso venham a ser usados)
-.gradle/
-!gradle/wrapper/gradle-wrapper.jar
-.mvn/
+# Secrets (never commit)
+.env
 
-# Sistema operacional
+# Operating system
 .DS_Store
 Thumbs.db
